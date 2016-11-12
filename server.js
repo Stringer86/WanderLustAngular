@@ -1,11 +1,17 @@
 'use strict';
 
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const path = require('path');
 
 const port = process.env.PORT || 8000;
-const app = express();
 
 app.disable('x-powered-by');
 
@@ -21,16 +27,63 @@ switch (app.get('env')) {
   default:
 }
 
-// Expose public directory to client
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(cookieParser());
 
-// Any other pages refer to index.html
+app.use(express.static(path.join('public')));
+
+// CSRF protection
+app.use((req, res, next) => {
+  if (/json/.test(req.get('Accept'))) {
+    return next();
+  }
+
+  res.sendStatus(406);
+});
+
+const users = require('./routes/users');
+const token = require('./routes/token');
+const descriptions = require('./routes/descriptions');
+const images = require('./routes/images');
+const favorites = require('./routes/favorites');
+const travel = require('./routes/travel');
+
+app.use(users);
+app.use(token);
+app.use(descriptions);
+app.use(images);
+app.use(favorites);
+app.use(travel);
+
 app.use((_req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendStatus(404);
+});
+
+app.use((err, _req, res, _next) => {
+  if (err.output && err.output.statusCode) {
+    return res
+      .status(err.output.statusCode)
+      .set('Content-Type', 'text/plain')
+      .send(err.message);
+  }
+
+  if (err.status) {
+    return res
+      .status(err.status)
+      .set('Content-Type', 'text/plain')
+      .send(err.errors[0].messages[0]);
+  }
+
+  // eslint-disable-next-line no-console
+  console.error(err.stack);
+  res.sendStatus(500);
 });
 
 app.listen(port, () => {
-  console.log('Listening on port', port); // eslint-disable-line no-console
+  if (app.get('env') !== 'test') {
+    // eslint-disable-next-line no-console
+    console.log('Listening on port', port);
+  }
 });
 
 module.exports = app;
