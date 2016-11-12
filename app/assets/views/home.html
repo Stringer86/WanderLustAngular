@@ -1,5 +1,5 @@
 <div class="parallax-container">
-      <div class="parallax"><img src="./images/halongBay.jpg" alt="Halong bay China"></div>
+      <div parallax><img src="./images/halongBay.jpg" alt="Halong bay China"></div>
     </div>
     <div class="section white z-depth-5">
       <div class="row container">
@@ -11,9 +11,8 @@
       </div>
 
       <div class="row container">  <!-- Modal Trigger -->
-        <button class="waves-effect waves-light btn modal-trigger center" data-target="modal1">Login/Register</button>
+        <button class="waves-effect waves-light btn modal-trigger center" data-target="modal1" modal>Login/Register</button>
 
-        <!-- Modal Structure -->
         <form id="signUpForm">
           <div id="modal1" class="modal z-depth-5">
               <div class="modal-content">
@@ -41,7 +40,7 @@
               <button id="register" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
                 Register
               </button>
-              <button id="logIn" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
+              <button id="logIn" ui-sref="profile" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
                 Log in
               </button>
             </div>
@@ -50,5 +49,5 @@
       </div>
     </div>
     <div class="parallax-container">
-      <div class="parallax"><img src="http://cdn.wallpapersafari.com/12/62/yfCSk2.jpg" alt="Image of Dubai Skyline"></div>
+      <div parallax><img src="http://cdn.wallpapersafari.com/12/62/yfCSk2.jpg" alt="Image of Dubai Skyline"></div>
     </div>
