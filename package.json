@@ -48,6 +48,7 @@
     "postcss-brunch": "^2.0.1",
     "uglify-js-brunch": "^2.0.1"
   },
-  "main": "brunch-config.js",
-  "keywords": []
+  "engines": {
+    "node": "6.6.0"
+  }
 }

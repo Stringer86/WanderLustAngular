@@ -3,15 +3,29 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello world</title>
+    <title>SnapShop</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
     <link rel="stylesheet" href="/vendor.css">
     <link rel="stylesheet" href="/app.css">
+    <link type="text/css" rel="stylesheet" href="index.css">
+    <link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
-    <h1>Hello World</h1>
+  <header ng-include="'templates/nav.html'"></header>
+<main>
+  <div>
+    <div ui-view></div>
+  </div>
+</main>
 
-    <script src="/vendor.js"></script>
-    <script src="/app.js"></script>
-    <script>require('app');</script>
+<footer ng-include="'templates/footer.html'"></footer>
+
+  <script src="https://code.jquery.com/jquery-2.2.4.js" integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script src="/vendor.js"></script>
+  <script src="/app.js"></script>
+  <script>require('app');</script>
+  <script src="app.js"></script>
   </body>
 </html>
