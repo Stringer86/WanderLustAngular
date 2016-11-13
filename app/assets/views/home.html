@@ -13,20 +13,20 @@
       <div class="row container">  <!-- Modal Trigger -->
         <button class="waves-effect waves-light btn modal-trigger center" data-target="modal1" modal>Login/Register</button>
 
-        <form id="signUpForm">
+        <form id="signUpForm" ng-controller="SignInCtrl as signIn">
           <div id="modal1" class="modal z-depth-5">
               <div class="modal-content">
                 <h4>Login or Register</h4>
                 <div class="row">
                     <div class="row modal-form-row">
                       <div class="input-field col s12">
-                        <input id="email" type="email" class="validate">
+                        <input id="email" type="email" class="validate" ng-model="signIn.email">
                         <label for="email" data-error="wrong" data-success="right">Email</label>
                       </div>
                     </div>
                     <div class="row">
                       <div class="input-field col s12">
-                        <input id="password" type="password" class="validate">
+                        <input id="password" type="password" class="validate" ng-model="signIn.password">
                         <label for="password" data-error="wrong" data-success="right">Password</label>
                       </div>
                     </div>
@@ -37,10 +37,10 @@
                 </div>
               </div>
               <div class="modal-footer card-action">
-              <button id="register" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
+              <button id="register" ng-click="signIn.register(signIn.email, signIn.password)" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
                 Register
               </button>
-              <button id="logIn" ui-sref="profile" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
+              <button id="logIn" ng-click="signIn.signIn(signIn.email, signIn.password)" ui-sref="profile" class="modal-action waves-effect waves-teal darken-3 btn-flat center waves-effect waves-light btn-large" type="submit" name="action">
                 Log in
               </button>
             </div>

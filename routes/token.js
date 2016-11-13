@@ -16,7 +16,19 @@ const authorize = function(req, res, next) {
   });
 };
 
-router.post('/token', authorize, (req, res, next) => {
+router.get('/api/token', (req, res) => {
+  const token = req.cookies.token;
+
+  jwt.verify(token, process.env.JWT_SECRET, (err, _decoded) => {
+    if (err) {
+      return res.send(false);
+    }
+
+    res.send(true);
+  });
+});
+
+router.post('/api/token', authorize, (req, res, next) => {
   const { email, password } = req.body;
 
   let user;
@@ -57,7 +69,7 @@ router.post('/token', authorize, (req, res, next) => {
     });
 });
 
-router.delete('/token', (req, res, _next) => {
+router.delete('/api/token', (req, res, _next) => {
   res.clearCookie('token');
   res.status(200);
   res.send(true);

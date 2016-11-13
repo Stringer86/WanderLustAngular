@@ -20,7 +20,7 @@ const authorize = function(req, res, next) {
   });
 };
 
-router.post('/users', authorize, ev(validations.post), (req, res, next) => {
+router.post('/api/users', authorize, ev(validations.post), (req, res, next) => {
   const { email, password } = req.body;
 
   knex('users')
@@ -33,12 +33,10 @@ router.post('/users', authorize, ev(validations.post), (req, res, next) => {
       bcyrpt.hash(password, 12)
         .then((hashedPassword) => {
           const insertUser = { email, hashedPassword };
-
           return knex('users').insert(decamelizeKeys(insertUser), '*');
         })
         .then((rows) => {
           const user = camelizeKeys(rows[0]);
-
           delete user.hashedPassword;
 
           return user;
@@ -54,7 +52,6 @@ router.post('/users', authorize, ev(validations.post), (req, res, next) => {
             expires: expiry,
             secure: router.get('env') === 'production'
           });
-
           res.send(user);
         })
         .catch((err) => {
