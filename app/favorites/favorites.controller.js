@@ -3,11 +3,11 @@ class FavoritesCtrl {
     this.favoritesSvc = favoritesSvc;
     favoritesSvc.getFavorites()
     .then((favorites) => {
-      let favs = favorites.map((e) => {
+      this.favs = favorites.map((e) => {
         return JSON.parse(e.body)
       });
       this.favorites = favorites;
-      console.log(this.favorites);
+      console.log(this.favs);
     })
   }
 
