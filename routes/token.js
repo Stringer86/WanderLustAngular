@@ -65,6 +65,7 @@ router.post('/api/token', authorize, (req, res, next) => {
       throw boom.create(400, 'Bad email or password'); // really bad password
     })
     .catch((err) => {
+      console.log("hiyo");
       next(err);
     });
 });

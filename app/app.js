@@ -5,10 +5,14 @@ import uiRouter from 'angular-ui-router';
 import SignInCtrl from './signup/signin.controller';
 import SignInService from './signup/signin.services';
 
+import FavoritesCtrl from './favorites/favorites.controller';
+import FavoritesService from './favorites/favorites.services';
 
 
 angular.module('my-app', [angularMaterialize, uiRouter])
 .service('SignInService', SignInService)
+.service('FavoritesService', FavoritesService)
+.controller('FavoritesCtrl', FavoritesCtrl)
 .controller('SignInCtrl', SignInCtrl)
 .config(['$stateProvider', ($stateProvider) => {
   $stateProvider

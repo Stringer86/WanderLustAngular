@@ -3,13 +3,6 @@ class SignInService {
     this.$http = $http;
     this.$state = $state;
     this.isLoggedIn = false;
-    this.$http.get('/api/token')
-      .then((response) => {
-        this.isLoggedIn = response.data;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   getState() {

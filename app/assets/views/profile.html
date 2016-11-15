@@ -40,7 +40,33 @@
         </div>
       </div>
 
-      <div  id="images" class="section white z-depth-5 col s12 m12 l6 offset-s">
+      <div id="images" class="section white z-depth-5 col s12 m12 l6 offset-s" ng-controller="FavoritesCtrl as fav">
         <h3>My Dream Destinations</h3>
+        <div class="col s6" ng-repeat="favorite in fav.favorites">
+            <div class="card medium">
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" ng-src="{{favorite.element.photoUrl}}" alt="description" height="300px" width="100px">
+              </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4 truncate">{{ favorite.element.name }}<i class="material-icons right">more_vert</i>
+                </span>
+                <div class="divider"></div>
+                <p>
+                  <a type="submit" class="btn search" id="{{favorite.element.name}}">view</a>
+                </p>
+              </div>
+              <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4">
+                {{favorite.element.name}}<i class="material-icons right">close</i></span>
+                <p>{{ favorite.element.description }}</p>
+                  <div class="divider"></div>
+                  <p>
+                    <a type="submit" class="btn delete" id="{{favorite.element.destinationId}}">
+                      Delete
+                    </a>
+                  </p>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
