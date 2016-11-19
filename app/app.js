@@ -8,12 +8,20 @@ import SignInService from './signup/signin.services';
 import FavoritesCtrl from './favorites/favorites.controller';
 import FavoritesService from './favorites/favorites.services';
 
+import CountryService from './country/country.services';
+import DescriptionCtrl from './country/description.controller';
+import ImagesCtrl from './country/images.controller';
+import TravelCtrl from './country/travel.controller';
 
 angular.module('my-app', [angularMaterialize, uiRouter])
 .service('SignInService', SignInService)
 .service('FavoritesService', FavoritesService)
+.service('CountryService', CountryService)
 .controller('FavoritesCtrl', FavoritesCtrl)
 .controller('SignInCtrl', SignInCtrl)
+.controller('DescriptionCtrl', DescriptionCtrl)
+.controller('ImagesCtrl', ImagesCtrl)
+.controller('TravelCtrl', TravelCtrl)
 .config(['$stateProvider', ($stateProvider) => {
   $stateProvider
     .state('home', {

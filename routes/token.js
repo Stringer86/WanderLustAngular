@@ -41,7 +41,7 @@ router.post('/api/token', authorize, (req, res, next) => {
         throw boom.create(400, 'Bad email or password');
       }
 
-      user = camelizeKeys(row); // object
+      user = camelizeKeys(row); 
 
       return bcrypt.compare(password, user.hashedPassword);
     })
